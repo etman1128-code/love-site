@@ -159,7 +159,11 @@ img {
 
 // 🔐 LOGIN
 function checkPass() {
-  if (document.getElementById("pass").value === "love2021") {
+  let pass = document.getElementById("pass").value;
+
+  console.log("INPUT:", pass);
+
+  if (pass.trim() === "love2021") {
     document.getElementById("login").style.display = "none";
     document.getElementById("main").style.display = "block";
     startHearts();
@@ -168,7 +172,6 @@ function checkPass() {
     alert("مش ده 😅");
   }
 }
-
 // 💌 MESSAGE (typing)
 function showMessage() {
   hideAll();
