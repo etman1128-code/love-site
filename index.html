@@ -159,11 +159,9 @@ img {
 
 // 🔐 LOGIN
 function checkPass() {
-  let pass = document.getElementById("pass").value;
+  let pass = document.getElementById("pass").value.trim();
 
-  console.log("INPUT:", pass);
-
-  if (pass.trim() === "love2021") {
+  if (pass === "love2021") {
     document.getElementById("login").style.display = "none";
     document.getElementById("main").style.display = "block";
     startHearts();
@@ -229,7 +227,7 @@ function startGame() {
 
     btn.onclick = function() {
       if (i === correct) {
-        alert("♥️🦆صح 🥳 يمكن احنا زعلانين من بعض بس ده ميمنعش اني اقولك بحبك يفاطمه ");");
+       alert("♥️🦆 صح 🥳 يمكن احنا زعلانين من بعض بس ده ميمنعش اني اقولك بحبك يا فاطمة ❤️");
       } else {
         alert("حاول تاني 😅");
       }
