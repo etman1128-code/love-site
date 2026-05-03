@@ -9,39 +9,42 @@ body {
   margin: 0;
   font-family: Arial;
   text-align: center;
-  background: linear-gradient(to top, #ffd1dc, #ffe6e6);
+  background: linear-gradient(to top, #2b0a14, #4a0f1f);
+  color: #fff;
   overflow-x: hidden;
 }
 
 .hidden {display: none;}
 
 button {
-  padding: 10px 20px;
-  margin: 5px;
-  background: #ff4d6d;
+  padding: 10px 18px;
+  margin: 6px;
+  background: #7a1f3d;
   border: none;
   color: white;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
   transition: 0.3s;
 }
 
 button:hover {
-  transform: scale(1.1);
+  transform: scale(1.08);
+  background: #a12b52;
 }
 
 img {
-  width: 170px;
+  width: 160px;
   border-radius: 15px;
-  margin: 10px;
+  margin: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
 }
 
 /* ❤️ hearts */
 .heart {
   position: fixed;
   bottom: -10px;
-  animation: float 6s linear infinite;
-  color: rgba(255,0,0,0.6);
+  animation: float 7s linear infinite;
+  color: rgba(255,180,200,0.7);
 }
 
 @keyframes float {
@@ -54,6 +57,23 @@ img {
   margin-top: 10px;
   font-weight: bold;
 }
+
+/* 💬 typing */
+#typedText {
+  width: 80%;
+  margin: auto;
+  min-height: 200px;
+  white-space: pre-wrap;
+  line-height: 1.6;
+}
+
+/* 💭 moment */
+.moment {
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 15px;
+}
 </style>
 
 </head>
@@ -62,26 +82,24 @@ img {
 
 <!-- 🔐 LOGIN -->
 <div id="login">
-  <h3>Enter something only we know 🔐</h3>
+  <h2>🔐 Enter our secret code</h2>
   <input type="password" id="pass">
   <br><br>
-  <button onclick="checkPass()">Enter</button>
+  <button onclick="checkPass()">Enter ❤️</button>
 </div>
 
 <!-- ❤️ MAIN -->
 <div id="main" class="hidden">
-  <h2>Hey...</h2>
 
-  <p>
-    عارف إن في بينا زعل،  
-    بس برضو في بينا حاجات حلوة ❤️
-  </p>
+  <h2>Hey... 💔</h2>
 
-  <!-- ⏳ COUNTDOWN -->
+  <p>عارف إن في بينا زعل، بس لسه في حاجات حلوة ❤️</p>
+
   <p id="timer"></p>
 
   <button onclick="showMessage()">💌 رسالة</button>
   <button onclick="showGallery()">📸 ذكريات</button>
+  <button onclick="showMoment()">💭 Moment</button>
   <button onclick="startGame()">🎮 لعبة</button>
 
   <br><br>
@@ -93,23 +111,9 @@ img {
 
 <!-- 💌 MESSAGE -->
 <div id="message" class="hidden">
-  <h2>💌 رسالة ليك</h2>
+  <h2>💌 رسالة</h2>
 
-  <p>
-    يمكن اللي عشناه مع بعض مش كتير 
-وف نفس الوقت مكنش قليل 
-في بيننا لحظات كتير حلوة كنا بنحس فيها اننا اخترنا بعض صح واننا الأمان لبعض 
-ومهما كان الواحد فينا بيكون تعبان او متضايق بيكون عارف ان فيه ضهر يتسند عليه وحبيب يعينه علي كل حاجه 
-بالرغم من اننا بنتخانق كتير وبنزعل بس ده موجود يين اي اتنين ف الدنيا، المهم ان اللحظات دي متمحيش الحلو اللي بيننا
-عارفه ليه! 
-عشان تقريبا لحظاتي الحلوة كلها ومشاعري الحلوة طلعت ف وجودك ف الوقت اللي احنا فيه مع بعض 
-ولو متقابلناش مكناش هنعيش ده 
-كل حاجه وكل وقت بكون محتاج ليكي فيه ودايما وحشاني
-حتي يومي عشان يكون طبيعي لازم اسمع صوتك واكون مطمن عليكي
-يمكن يكون البيت هو حضن حبيب 
-حبيتك والله وهحبك دايما لأخر عمري 
-حبيبك المحب دايما ♥️🦆
-  </p>
+  <div id="typedText"></div>
 
   <button onclick="goBack()">رجوع</button>
 </div>
@@ -128,6 +132,19 @@ img {
   <button onclick="goBack()">رجوع</button>
 </div>
 
+<!-- 💭 MOMENT -->
+<div id="moment" class="hidden">
+  <h2>💭 Moment</h2>
+
+  <div class="moment">
+    <img src="moment1.jpg">
+    <img src="moment2.jpg">
+    <p>اللحظة دي من أكتر اللحظات اللي كنت مبسوط فيها و حاسس بالأمان,وبعدين بتاكلي صباعي ليه 💖</p>
+  </div>
+
+  <button onclick="goBack()">رجوع</button>
+</div>
+
 <!-- 🎮 GAME -->
 <div id="game" class="hidden">
   <h2>اختار القلب الصح ❤️</h2>
@@ -140,7 +157,7 @@ img {
 
 <script>
 
-// 🔐 PASSWORD
+// 🔐 LOGIN
 function checkPass() {
   if (document.getElementById("pass").value === "I love my 🦆") {
     document.getElementById("login").style.display = "none";
@@ -152,16 +169,45 @@ function checkPass() {
   }
 }
 
-// 💌 MESSAGE
+// 💌 MESSAGE (typing)
 function showMessage() {
   hideAll();
   document.getElementById("message").style.display = "block";
+
+  let text = `يمكن اللي عشناه مع بعض مش كتير 
+وف نفس الوقت مكنش قليل 
+في بيننا لحظات كتير حلوة كنا بنحس فيها اننا اخترنا بعض صح واننا الأمان لبعض 
+ومهما كان الواحد فينا بيكون تعبان او متضايق بيكون عارف ان فيه ضهر يتسند عليه وحبيب يعينه علي كل حاجه 
+بالرغم من اننا بنتخانق كتير وبنزعل بس ده موجود يين اي اتنين ف الدنيا، المهم ان اللحظات دي متمحيش الحلو اللي بيننا
+عارفه ليه! 
+عشان تقريبا لحظاتي الحلوة كلها ومشاعري الحلوة طلعت ف وجودك ف الوقت اللي احنا فيه مع بعض 
+ولو متقابلناش مكناش هنعيش ده 
+كل حاجه وكل وقت بكون محتاج ليكي فيه ودايما وحشاني
+حتي يومي عشان يكون طبيعي لازم اسمع صوتك واكون مطمن عليكي
+يمكن يكون البيت هو حضن حبيب 
+حبيتك والله وهحبك دايما لأخر عمري 
+حبيبك المحب دايما ♥️🦆`;
+
+  let i = 0;
+  document.getElementById("typedText").innerHTML = "";
+
+  let typing = setInterval(() => {
+    document.getElementById("typedText").innerHTML += text[i];
+    i++;
+    if (i >= text.length) clearInterval(typing);
+  }, 30);
 }
 
-// 📸 GALLERY
+// 📸
 function showGallery() {
   hideAll();
   document.getElementById("gallery").style.display = "block";
+}
+
+// 💭 MOMENT
+function showMoment() {
+  hideAll();
+  document.getElementById("moment").style.display = "block";
 }
 
 // 🎮 GAME
@@ -177,13 +223,12 @@ function startGame() {
   for (let i = 0; i < 6; i++) {
     let btn = document.createElement("button");
     btn.innerHTML = "❤️";
-    btn.style.fontSize = "25px";
 
     btn.onclick = function() {
       if (i === correct) {
-        alert("صح ❤️ يمكن احنا زعلانين من بعض بس ده ميمنعش اني اقولك بحبك يفاطمه 🙂");
+        alert("♥️🦆صح 🥳 يمكن احنا زعلانين من بعض بس ده ميمنعش اني اقولك بحبك يفاطمه ");");
       } else {
-        alert("مش ده 😅 حاول تاني");
+        alert("حاول تاني 😅");
       }
     };
 
@@ -191,7 +236,7 @@ function startGame() {
   }
 }
 
-// 🔙 BACK
+// 🔙
 function goBack() {
   hideAll();
   document.getElementById("main").style.display = "block";
@@ -201,6 +246,7 @@ function hideAll() {
   document.getElementById("main").style.display = "none";
   document.getElementById("message").style.display = "none";
   document.getElementById("gallery").style.display = "none";
+  document.getElementById("moment").style.display = "none";
   document.getElementById("game").style.display = "none";
 }
 
@@ -209,41 +255,34 @@ function startHearts() {
   setInterval(() => {
     let heart = document.createElement("div");
     heart.className = "heart";
-    heart.innerHTML = "❤️";
+    heart.innerHTML = "💖";
     heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = Math.random() * 15 + 10 + "px";
+    heart.style.fontSize = Math.random() * 18 + 10 + "px";
 
     document.body.appendChild(heart);
-
-    setTimeout(() => heart.remove(), 6000);
-  }, 400);
+    setTimeout(() => heart.remove(), 7000);
+  }, 300);
 }
 
-// ⏳ COUNTDOWN (FIXED DATE)
+// ⏳ COUNTER
 function startCounter() {
   var startDate = new Date("2021-08-18");
-setInterval(function() {
+
+  setInterval(function() {
     var now = new Date();
 
     var years = now.getFullYear() - startDate.getFullYear();
     var months = now.getMonth() - startDate.getMonth();
     var days = now.getDate() - startDate.getDate();
 
-    if (days < 0) {
-      months--;
-      days += 30;
-    }
-
-    if (months < 0) {
-      years--;
-      months += 12;
-    }
+    if (days < 0) { months--; days += 30; }
+    if (months < 0) { years--; months += 12; }
 
     document.getElementById("timer").innerHTML =
-      "❤️ بقالنا " +
+      "💖 مع بعض بقالنا " +
       years + " سنة و " +
       months + " شهر و " +
-      days + " يوم سوا";
+      days + " يوم";
   }, 1000);
 }
 
