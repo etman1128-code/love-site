@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>Just Us ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  text-align: center;
+  background: linear-gradient(to top, #ffd1dc, #ffe6e6);
+  overflow-x: hidden;
+}
+
+.hidden {display: none;}
+
+button {
+  padding: 10px 20px;
+  margin: 5px;
+  background: #ff4d6d;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+img {
+  width: 170px;
+  border-radius: 15px;
+  margin: 10px;
+}
+
+/* ❤️ hearts */
+.heart {
+  position: fixed;
+  bottom: -10px;
+  animation: float 6s linear infinite;
+  color: rgba(255,0,0,0.6);
+}
+
+@keyframes float {
+  0% {transform: translateY(0);}
+  100% {transform: translateY(-100vh);}
+}
+
+#timer {
+  font-size: 18px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- 🔐 LOGIN -->
+<div id="login">
+  <h3>Enter something only we know 🔐</h3>
+  <input type="password" id="pass">
+  <br><br>
+  <button onclick="checkPass()">Enter</button>
+</div>
+
+<!-- ❤️ MAIN -->
+<div id="main" class="hidden">
+  <h2>Hey...</h2>
+
+  <p>
+    عارف إن في بينا زعل،  
+    بس برضو في بينا حاجات حلوة ❤️
+  </p>
+
+  <!-- ⏳ COUNTDOWN -->
+  <p id="timer"></p>
+
+  <button onclick="showMessage()">💌 رسالة</button>
+  <button onclick="showGallery()">📸 ذكريات</button>
+  <button onclick="startGame()">🎮 لعبة</button>
+
+  <br><br>
+
+  <audio controls>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+<!-- 💌 MESSAGE -->
+<div id="message" class="hidden">
+  <h2>💌 رسالة ليك</h2>
+
+  <p>
+    يمكن اللي عشناه مع بعض مش كتير 
+وف نفس الوقت مكنش قليل 
+في بيننا لحظات كتير حلوة كنا بنحس فيها اننا اخترنا بعض صح واننا الأمان لبعض 
+ومهما كان الواحد فينا بيكون تعبان او متضايق بيكون عارف ان فيه ضهر يتسند عليه وحبيب يعينه علي كل حاجه 
+بالرغم من اننا بنتخانق كتير وبنزعل بس ده موجود يين اي اتنين ف الدنيا، المهم ان اللحظات دي متمحيش الحلو اللي بيننا
+عارفه ليه! 
+عشان تقريبا لحظاتي الحلوة كلها ومشاعري الحلوة طلعت ف وجودك ف الوقت اللي احنا فيه مع بعض 
+ولو متقابلناش مكناش هنعيش ده 
+كل حاجه وكل وقت بكون محتاج ليكي فيه ودايما وحشاني
+حتي يومي عشان يكون طبيعي لازم اسمع صوتك واكون مطمن عليكي
+يمكن يكون البيت هو حضن حبيب 
+حبيتك والله وهحبك دايما لأخر عمري 
+حبيبك المحب دايما ♥️🦆
+  </p>
+
+  <button onclick="goBack()">رجوع</button>
+</div>
+
+<!-- 📸 GALLERY -->
+<div id="gallery" class="hidden">
+  <h2>📸 ذكرياتنا</h2>
+
+  <img src="1.jpg">
+  <img src="2.jpg">
+  <img src="3.jpg">
+  <img src="4.jpg">
+  <img src="5.jpg">
+
+  <br>
+  <button onclick="goBack()">رجوع</button>
+</div>
+
+<!-- 🎮 GAME -->
+<div id="game" class="hidden">
+  <h2>اختار القلب الصح ❤️</h2>
+
+  <div id="heartsGame"></div>
+
+  <br>
+  <button onclick="goBack()">رجوع</button>
+</div>
+
+<script>
+
+// 🔐 PASSWORD
+function checkPass() {
+  if (document.getElementById("pass").value === "I love my 🦆") {
+    document.getElementById("login").style.display = "none";
+    document.getElementById("main").style.display = "block";
+    startHearts();
+    startCounter();
+  } else {
+    alert("مش ده 😅");
+  }
+}
+
+// 💌 MESSAGE
+function showMessage() {
+  hideAll();
+  document.getElementById("message").style.display = "block";
+}
+
+// 📸 GALLERY
+function showGallery() {
+  hideAll();
+  document.getElementById("gallery").style.display = "block";
+}
+
+// 🎮 GAME
+function startGame() {
+  hideAll();
+  document.getElementById("game").style.display = "block";
+
+  let container = document.getElementById("heartsGame");
+  container.innerHTML = "";
+
+  let correct = Math.floor(Math.random() * 6);
+
+  for (let i = 0; i < 6; i++) {
+    let btn = document.createElement("button");
+    btn.innerHTML = "❤️";
+    btn.style.fontSize = "25px";
+
+    btn.onclick = function() {
+      if (i === correct) {
+        alert("صح ❤️ يمكن احنا زعلانين من بعض بس ده ميمنعش اني اقولك بحبك يفاطمه 🙂");
+      } else {
+        alert("مش ده 😅 حاول تاني");
+      }
+    };
+
+    container.appendChild(btn);
+  }
+}
+
+// 🔙 BACK
+function goBack() {
+  hideAll();
+  document.getElementById("main").style.display = "block";
+}
+
+function hideAll() {
+  document.getElementById("main").style.display = "none";
+  document.getElementById("message").style.display = "none";
+  document.getElementById("gallery").style.display = "none";
+  document.getElementById("game").style.display = "none";
+}
+
+// ❤️ HEARTS
+function startHearts() {
+  setInterval(() => {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 15 + 10 + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 6000);
+  }, 400);
+}
+
+// ⏳ COUNTDOWN (FIXED DATE)
+function startCounter() {
+  var startDate = new Date("2021-08-18");
+setInterval(function() {
+    var now = new Date();
+
+    var years = now.getFullYear() - startDate.getFullYear();
+    var months = now.getMonth() - startDate.getMonth();
+    var days = now.getDate() - startDate.getDate();
+
+    if (days < 0) {
+      months--;
+      days += 30;
+    }
+
+    if (months < 0) {
+      years--;
+      months += 12;
+    }
+
+    document.getElementById("timer").innerHTML =
+      "❤️ بقالنا " +
+      years + " سنة و " +
+      months + " شهر و " +
+      days + " يوم سوا";
+  }, 1000);
+}
+
+</script>
+
+</body>
+</html>
